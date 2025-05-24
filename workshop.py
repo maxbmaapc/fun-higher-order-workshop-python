@@ -4,10 +4,10 @@ Implement each function below for daily practice.
 """
 
 def identity(x):
-    pass
+    return x
 
 def identity_f(x):
-    pass
+    return lambda: x
 
 def add(a, b):
     pass
