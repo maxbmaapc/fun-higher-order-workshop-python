@@ -10,16 +10,16 @@ def identity_f(x):
     return lambda: x
 
 def add(a, b):
-    pass
+    return a + b
 
 def subtract(a, b):
-    pass
+    return a - b
 
 def multiply(a, b):
-    pass
+    return a * b
 
 def increment(x):
-    pass
+    return x + 1
 
 def add_f(x):
     pass
