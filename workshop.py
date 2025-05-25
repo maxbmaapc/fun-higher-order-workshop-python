@@ -22,10 +22,10 @@ def increment(x):
     return x + 1
 
 def add_f(x):
-    pass
+    return lambda y: x + y
 
 def curry(fn, x):
-    pass
+    return lambda y: fn(x, y)
 
 def lift_f(fn):
     pass
