@@ -28,7 +28,7 @@ def curry(fn, x):
     return lambda y: fn(x, y)
 
 def lift_f(fn):
-    pass
+    return lambda n1: lambda n2: fn(n1, n2)
 
 def once(fn):
     pass
