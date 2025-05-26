@@ -43,7 +43,7 @@ def once(fn):
     return inner_once
 
 def twice(fn):
-    pass
+    return lambda x: fn(x, x)
 
 def compose_u(f, g):
     pass
