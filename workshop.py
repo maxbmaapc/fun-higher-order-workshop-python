@@ -46,7 +46,7 @@ def twice(fn):
     return lambda x: fn(x, x)
 
 def compose_u(f, g):
-    pass
+    return lambda x: g(f(x))
 
 def compose_b(f, g):
     pass
