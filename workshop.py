@@ -31,7 +31,16 @@ def lift_f(fn):
     return lambda n1: lambda n2: fn(n1, n2)
 
 def once(fn):
-    pass
+    have_been_called = False
+    result = 0
+    def inner_once(x):
+        nonlocal have_been_called, result
+        if not have_been_called:
+            result = fn(x)
+            have_been_called = True
+            return result
+        return None
+    return inner_once
 
 def twice(fn):
     pass
