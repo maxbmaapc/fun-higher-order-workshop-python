@@ -49,7 +49,7 @@ def compose_u(f, g):
     return lambda x: g(f(x))
 
 def compose_b(f, g):
-    pass
+    return lambda a, b, c: g(f(a, b), c)
 
 def limit(fn, n):
     pass
