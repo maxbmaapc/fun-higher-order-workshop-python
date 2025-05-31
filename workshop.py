@@ -52,7 +52,7 @@ def compose_b(f, g):
     return lambda a, b, c: g(f(a, b), c)
 
 def limit(fn, n):
-    pass
+    return 
 
 def from_(start):
     pass
