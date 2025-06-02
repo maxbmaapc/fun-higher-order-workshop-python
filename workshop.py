@@ -52,7 +52,16 @@ def compose_b(f, g):
     return lambda a, b, c: g(f(a, b), c)
 
 def limit(fn, n):
-    return 
+    has_been_called = 0
+    def inner_limit(a, b): 
+       nonlocal has_been_called
+       output = fn(a,b) 
+       if has_been_called < n:
+           has_been_called += 1
+           return output
+       else:
+           return None
+    return inner_limit
 
 def from_(start):
     pass
