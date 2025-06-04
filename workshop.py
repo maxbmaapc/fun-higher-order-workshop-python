@@ -56,13 +56,19 @@ def limit(fn, n):
     def inner_limit(a, b): 
        nonlocal call_count
        if call_count < n:
-           call_count +=  1
+           call_count += 1
            return fn(a,b) 
        return None
     return inner_limit
 
 def from_(start):
-    pass
+    count = start
+    def inner_from():
+       nonlocal count
+       old_count = count
+       count += 1
+       return old_count
+    return inner_from
 
 def to(gen, end):
     pass
