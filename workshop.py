@@ -71,8 +71,11 @@ def from_(start):
     return inner_from
 
 def to(gen, end):
-    pass
-
+    def inner_to():
+        count = gen()
+        if count < end:
+            return count
+    return inner_to
 def from_to(start, end):
     pass
 
