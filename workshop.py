@@ -77,8 +77,14 @@ def to(gen, end):
             return count
     return inner_to
 def from_to(start, end):
-    pass
-
+    counter = start
+    def inner_from_to():
+        nonlocal counter
+        if counter < end:
+            old_count = counter
+            counter += 1
+            return old_count
+    return inner_from_to
 def element(lst, gen=None):
     pass
 
