@@ -86,8 +86,11 @@ def from_to(start, end):
             return old_count
     return inner_from_to
 def element(lst, gen=None):
-    pass
-
+    def inner_element():
+        counter = gen()
+        if counter:
+            return lst[counter]
+    return inner_element
 def collect(gen, arr):
     pass
 
