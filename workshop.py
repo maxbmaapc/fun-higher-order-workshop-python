@@ -103,6 +103,7 @@ def element(lst, gen=None):
 def collect(gen, arr):
     def inner_collect():
         output = gen()
+        
         if type(output) == int:
             arr.append(output)
             return output
