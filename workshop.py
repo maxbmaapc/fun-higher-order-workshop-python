@@ -103,11 +103,12 @@ def element(lst, gen=None):
 def collect(gen, arr):
     def inner_collect():
         output = gen()
-        
+
         if type(output) == int:
             arr.append(output)
             return output
     return inner_collect
+
 
 def filter_(gen, predicate):
     pass
