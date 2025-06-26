@@ -109,7 +109,6 @@ def collect(gen, arr):
             return output
     return inner_collect
 
-
 def filter_(gen, predicate):
     pass
 
