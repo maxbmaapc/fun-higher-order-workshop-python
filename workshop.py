@@ -92,6 +92,7 @@ def element(lst, gen=None):
         nonlocal count
         counter = gen() if gen else None
         if counter:
+            
             return lst[counter]
         elif gen == None:
             old_count = count
