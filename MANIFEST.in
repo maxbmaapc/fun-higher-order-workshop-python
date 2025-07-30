@@ -1,0 +1,11 @@
+include README.md
+include LICENSE
+include requirements.txt
+include setup.py
+recursive-include fun_higher_order *.py
+recursive-include examples *.py
+recursive-include tests *.py
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude *.egg-info
+global-exclude .pytest_cache
