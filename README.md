@@ -1,51 +1,185 @@
-# Fun Higher Order Workshop (Python)
+# Fun Higher Order Functions (Python)
 
-This repository is inspired by [FunHigherOrderWorkshop](https://github.com/fuzzyJess/FunHigherOrderWorkshop) for JavaScript, but implemented in Python for daily practice.
+A complete Python package for functional programming with higher-order functions. This package provides a comprehensive toolkit of functions for composition, currying, generators, and other functional programming patterns.
+
+## Features
+
+- **Basic Functions**: Identity, arithmetic operations, and utilities
+- **Higher-Order Functions**: Currying, function composition, and lifting
+- **Generators**: Flexible sequence generation with filtering and concatenation
+- **Advanced Patterns**: Rate limiting, access control, and symbol generation
+- **CLI Interface**: Interactive demonstrations and examples
+- **Complete Test Suite**: 100% test coverage with pytest
+
+## Installation
+
+### From Source
+
+```bash
+git clone https://github.com/maxbmaapc/fun-higher-order-workshop-python.git
+cd fun-higher-order-workshop-python
+pip install -e .
+```
+
+### For Development
+
+```bash
+git clone https://github.com/maxbmaapc/fun-higher-order-workshop-python.git
+cd fun-higher-order-workshop-python
+pip install -e ".[dev]"
+```
+
+## Quick Start
+
+### Using as a Library
+
+```python
+from fun_higher_order import *
+
+# Basic usage
+result = add(3, 4)  # 7
+doubled = twice(multiply)(5)  # 5 * 5 = 25
+
+# Higher-order functions
+add10 = add_f(10)
+result = add10(5)  # 15
+
+# Generators
+counter = from_to(0, 5)
+numbers = []
+value = counter()
+while value is not None:
+    numbers.append(value)
+    value = counter()
+print(numbers)  # [0, 1, 2, 3, 4]
+
+# Fibonacci sequence
+fib = fibonacci_f(0, 1)
+sequence = [fib() for _ in range(8)]
+print(sequence)  # [0, 1, 1, 2, 3, 5, 8, 13]
+```
+
+### Using the CLI
+
+```bash
+# Run interactive demonstrations
+fun-higher-order demo
+
+# Start interactive mode
+fun-higher-order interactive
+
+# Show version
+fun-higher-order --version
+```
+
+## Available Functions
+
+### Basic Functions
+- `identity(x)` - Returns the argument unchanged
+- `identity_f(x)` - Returns a function that returns the argument
+- `add(a, b)`, `subtract(a, b)`, `multiply(a, b)` - Basic arithmetic
+- `increment(x)` - Increments a number by 1
+
+### Higher-Order Functions
+- `add_f(x)` - Partial application of addition
+- `curry(fn, x)` - Curries a binary function with one argument
+- `lift_f(fn)` - Lifts a binary function to work with currying
+- `once(fn)` - Creates a function that can only be called once
+- `twice(fn)` - Creates a function that calls a binary function with the same argument twice
+- `compose_u(f, g)` - Composes two unary functions
+- `compose_b(f, g)` - Composes two binary functions
+- `limit(fn, n)` - Limits the number of times a function can be called
+
+### Generators
+- `from_(start)` - Creates a counter starting from a value
+- `to(gen, end)` - Limits a generator to produce values up to an end value
+- `from_to(start, end)` - Creates a range generator
+- `element(lst, gen=None)` - Creates a generator that produces elements from a list
+- `collect(gen, arr)` - Collects generator values into an array
+- `filter_(gen, predicate)` - Filters generator values with a predicate
+- `concat(gen1, gen2)` - Concatenates two generators
+- `fibonacci_f(a, b)` - Creates a Fibonacci sequence generator
+
+### Symbol Generators
+- `gen_sym_f(prefix)` - Creates a symbol generator with a prefix
+- `gen_sym_ff(unary_fn, seed)` - Creates a customizable symbol generator factory
+
+### Advanced Functions
+- `counter(x)` - Creates an up/down counter object
+- `revokable(fn)` - Creates a revokable function wrapper
+
+## Examples
+
+Check out the `examples/` directory for comprehensive usage examples:
+
+- `examples/basic_usage.py` - Basic function usage and patterns
+- `examples/advanced_usage.py` - Advanced patterns and real-world examples
+
+```bash
+# Run the examples
+python examples/basic_usage.py
+python examples/advanced_usage.py
+```
+
+## Development
+
+### Running Tests
+
+```bash
+pytest                          # Run all tests
+pytest -v                       # Verbose output
+pytest --cov=fun_higher_order   # With coverage report
+```
+
+### Code Quality
+
+```bash
+black fun_higher_order/         # Format code
+flake8 fun_higher_order/        # Lint code
+```
 
 ## Goals
 
-- Get comfortable with higher-order functions in Python (functions that receive other functions as arguments and/or return other functions)
-- Practice TDD using pytest (tests included)
-- Prepare for practical use of these patterns in real Python code
+This package is designed to help you:
 
-## Tasks
+- **Get comfortable with higher-order functions** in Python (functions that receive other functions as arguments and/or return other functions)
+- **Practice functional programming patterns** with real, tested implementations
+- **Prepare for practical use** of these patterns in production Python code
+- **Learn by example** with comprehensive documentation and demonstrations
 
-1. Write an `identity` function that takes an argument and returns that same argument.
-2. Write a function `identity_f` that takes an argument and returns a function that returns that argument.
-3. Write three binary functions, `add`, `subtract`, and `multiply` that take two numbers and return their sum, difference, and product respectively.
-4. Write a function called `increment` that uses one of your previous functions to return a number incremented by 1.
-5. Write a function `add_f` that adds from two invocations.
-6. Write a function `curry` that takes a binary function and one argument, and returns a function that takes the second argument.
-7. Write a function `lift_f` that takes a binary function and makes it callable with two invocations.
-8. Write a function `once` that can only be called once.
-9. Write a function `twice` that takes a binary function and returns a unary function that passes its argument to the binary function twice.
-10. Write a function `compose_u` that takes two unary functions and returns a unary function that calls them both, in argument order.
-11. Write a function `compose_b` that takes two binary functions and returns a function that calls them both. The return value of the first function will get passed as the first argument to the second one.
-12. Write a `limit` function that allows a binary function to be called a limited number of times.
-13. Write a `from_` function that produces a generator that will produce a series of consecutive numerical values starting from the argument passed.
-14. Write a `to` function that takes a generator and an end value, and returns a generator that will produce numbers up to that limit (not inclusive).
-15. Write a `from_to` function that produces a generator that will produce values in a range.
-16. Write an `element` function that takes a list and a generator and returns a generator that will produce elements from the list.
-17. Modify the `element` function so that the generator argument is optional. If a generator is not provided, then each of the elements of the list will be produced.
-18. Write a `collect` function that takes a generator and a list and produces a function that will collect the results in the list by mutating it.
-19. Write a `filter_` function that takes a generator and a predicate and produces a generator that produces only the values approved by the predicate.
-20. Write a `concat` function that takes two generators and produces a generator that combines the sequences.
-21. Make a function `fibonacci_f` that returns a generator that will return consecutive fibonacci numbers starting with the first two arguments.
-22. Make a function `gen_sym_f` that makes a function that generates unique symbols.
-23. Write a function `gen_sym_ff` that takes a unary function and a seed and returns a `gen_sym_f`.
-24. Write a `counter` function that returns an object containing two functions that implement an up/down counter, hiding the counter value itself.
-25. Write a `revokable` function that takes a binary function, and returns an object containing an `invoke` function that can invoke the binary function, and a `revoke` function that disables the `invoke` function.
-26. Implement `curry` so that it works with any number of arguments.
-27. Reimplement the `concat` function so that it will take any number of generators.
+## Use Cases
 
----
+- **Functional Programming**: Build composable, reusable functions
+- **Data Processing**: Create flexible pipelines with generators and filters
+- **Rate Limiting**: Control function execution frequency
+- **Caching**: Implement once-only execution patterns
+- **Symbol Generation**: Generate unique identifiers and symbols
+- **Educational**: Learn functional programming concepts interactively
 
-## How to use
+## Architecture
 
-- Implement each function in `workshop.py`.
-- Run tests with `pytest`.
+```
+fun_higher_order/
+├── __init__.py          # Package exports and metadata
+├── core.py              # Core function implementations
+└── cli.py               # Command-line interface
 
----
+examples/
+├── basic_usage.py       # Basic usage examples
+└── advanced_usage.py    # Advanced patterns and real-world examples
+
+tests/
+└── test_workshop.py     # Comprehensive test suite
+```
 
 ## License
-MIT
+
+MIT License - see LICENSE file for details.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+
+This project transforms a functional programming workshop into a complete, production-ready Python package with CLI interface, comprehensive examples, and proper packaging.
